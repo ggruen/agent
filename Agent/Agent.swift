@@ -5,6 +5,8 @@
 //  Created by Christoffer Hallas on 6/2/14.
 //  Copyright (c) 2014 Christoffer Hallas. All rights reserved.
 //
+// https://github.com/hallas/agent
+//
 
 import Foundation
 
@@ -15,14 +17,14 @@ class Agent {
   typealias Response = (NSHTTPURLResponse!, Data!, NSError!) -> Void
 
   /**
-   * Members
+   * MARK: Members
    */
 
   var request: NSMutableURLRequest
   let queue = NSOperationQueue()
 
   /**
-   * Initialize
+   * MARK: Initialize
    */
 
   init(method: String, url: String, headers: Headers?) {
@@ -34,7 +36,7 @@ class Agent {
   }
 
   /**
-   * GET
+   * MARK: GET
    */
 
   class func get(url: String) -> Agent {
@@ -54,7 +56,7 @@ class Agent {
   }
 
   /**
-   * POST
+   * MARK: POST
    */
 
   class func post(url: String) -> Agent {
@@ -81,12 +83,26 @@ class Agent {
     return Agent.post(url, data: data).send(data).end(done)
   }
 
+    /**
+        Submits "data" to "url" with headers in "headers".  When done, calls "done".
+    
+        Example:
+            var url: String = "http://some.api.com/"
+            let req = Agent.post(url, data: dictResults, done: { (response: NSHTTPURLResponse!, data: Agent.Data!, error: NSError!) -> Void in
+                if (error == nil) {
+                    // Process result.  If your result is JSON, it'll already be parsed via NSJSONSerialization.JSONObjectWithData.  If it's any other MIME type, it'll be exactly as the NSURLConnection.sendAsynchronousRequest call would return it.
+                } else {
+                    println("Error: \(error!.localizedDescription)")
+                }
+            })
+
+    */
   class func post(url: String, headers: Headers, data: Data, done: Response) -> Agent {
     return Agent.post(url, headers: headers, data: data).send(data).end(done)
   }
 
   /**
-   * PUT
+   * MARK: PUT
    */
 
   class func put(url: String) -> Agent {
@@ -118,7 +134,7 @@ class Agent {
   }
 
   /**
-   * DELETE
+   * MARK: DELETE
    */
 
   class func delete(url: String) -> Agent {
@@ -138,7 +154,7 @@ class Agent {
   }
 
   /**
-   * Methods
+   * MARK: Methods
    */
 
   func send(data: Data) -> Agent {
@@ -154,22 +170,27 @@ class Agent {
     return self
   }
 
-  func end(done: Response) -> Agent {
-    let completion = { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-      let res = response as NSHTTPURLResponse!
-      if (error) {
-        done(res, data, error)
-        return
-      }
-      var error: NSError?
-      var json: AnyObject!
-      if (data) {
-        json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error)
-      }
-      done(res, json, error)
+    /**
+        Parses the response from the server.  If the response's MIME type is "application/json", the response data is parsed as JSON using NSJSONSerialization.JSONObjectWithData.  The "done" handler is called with the response, the data, and an error object.
+    */
+    func end(done: Response) -> Agent {
+        let completion = { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            let res = response as NSHTTPURLResponse!
+            if (error != nil) {
+                done(res, data, error)
+                return
+            }
+            var error: NSError?
+            var contentType = response.MIMEType
+            if (data != nil && contentType == "application/json") {
+                var json: AnyObject! = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error)
+                done(res, json, error)
+            } else {
+                done(res, data, error)
+            }
+        }
+        NSURLConnection.sendAsynchronousRequest(self.request, queue: self.queue, completionHandler: completion)
+        return self
     }
-    NSURLConnection.sendAsynchronousRequest(self.request, queue: self.queue, completionHandler: completion)
-    return self
-  }
 
 }
