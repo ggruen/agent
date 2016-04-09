@@ -1,4 +1,18 @@
-# Agent [![Tips](https://img.shields.io/gratipay/hallas.svg)](https://gratipay.com/hallas) [![Join the chat at https://gitter.im/hallas/agent](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hallas/agent?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# Agent
+
+### Table of Contents
+
+- [Introduction](#introduction)
+- [Usage](#usage)
+  - [HTTP Verbs](#http-verbs)
+  - [Overloading](#overloading)
+  - [Method Chaining](#method-chaining)
+  - [Response Closure](#response-closure)
+  - [Verbs](#verbs)
+  - [Methods](#methods)
+  - [Methods](#nsmutableurlrequest)
+- [Contributing](#contributing)
+- [License](#license)
 
 Minimalistic Swift HTTP request agent for iOS and OS X.
 
