@@ -10,7 +10,7 @@
   - [Response Closure](#response-closure)
   - [Verbs](#verbs)
   - [Methods](#methods)
-  - [Methods](#nsmutableurlrequest)
+  - [NSMutableURLRequest](#nsmutableurlrequest)
 - [Contributing](#contributing)
 - [License](#license)
 
