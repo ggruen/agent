@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A16D93E1B3FECCE0002BD69 /* Agent.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8A16D93D1B3FECCE0002BD69 /* Agent.podspec */; };
 		8A90A2AD193D5613001D7C92 /* Agent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A90A2A1193D5613001D7C92 /* Agent.framework */; };
 		8A90A2B4193D5613001D7C92 /* AgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A2B3193D5613001D7C92 /* AgentTests.swift */; };
 		8A90A2C0193D566E001D7C92 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A90A2BF193D566E001D7C92 /* Agent.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A16D93D1B3FECCE0002BD69 /* Agent.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Agent.podspec; sourceTree = "<group>"; };
 		8A90A2A1193D5613001D7C92 /* Agent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Agent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A90A2A5193D5613001D7C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A90A2AC193D5613001D7C92 /* AgentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AgentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +55,7 @@
 		8A90A297193D5613001D7C92 = {
 			isa = PBXGroup;
 			children = (
+				8A16D93D1B3FECCE0002BD69 /* Agent.podspec */,
 				8A90A2A3193D5613001D7C92 /* Agent */,
 				8A90A2B0193D5613001D7C92 /* Tests */,
 				8A90A2A2193D5613001D7C92 /* Products */,
@@ -193,6 +196,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A16D93E1B3FECCE0002BD69 /* Agent.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
